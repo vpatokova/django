@@ -1,6 +1,6 @@
 # Django
 ### Описание
-Пока нет
+Django documentation https://docs.djangoproject.com/en/3.2/
 ### Технологии
 Python 3.10.8
 Django 3.2.15
