@@ -21,7 +21,6 @@ INSTALLED_APPS = [
     "catalog.apps.CatalogConfig",
     "homepage.apps.HomepageConfig",
     "about.apps.AboutConfig",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -87,22 +86,13 @@ AUTH_PASSWORD_VALIDATORS = [
         ),
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation"
-            ".MinimumLengthValidator"
-        ),
+        "NAME": ("django.contrib.auth.password_validation" ".MinimumLengthValidator"),
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation"
-            ".CommonPasswordValidator"
-        ),
+        "NAME": ("django.contrib.auth.password_validation" ".CommonPasswordValidator"),
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation"
-            ".NumericPasswordValidator"
-        ),
+        "NAME": ("django.contrib.auth.password_validation" ".NumericPasswordValidator"),
     },
 ]
 
