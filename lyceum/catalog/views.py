@@ -7,3 +7,11 @@ def item_list(request):
 
 def item_detail(request, pk):
     return HttpResponse("<body>About the selected item in details</body>")
+
+
+def new_page(request):
+    return HttpResponse("<body>Я родился!</body>")
+
+
+def try_converter(request, text: str):
+    return HttpResponse("<body>I'm a converter!</body>")
