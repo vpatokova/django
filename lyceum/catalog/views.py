@@ -14,4 +14,6 @@ def new_page(request):
 
 
 def converter(request, year, number):
-    return HttpResponse(f"<body>I'm a converter!. Year is {year}, number is {number}</body>")
+    return HttpResponse(
+        f"<body>I'm a converter!. Year is {year}, number is {number}</body>"
+    )

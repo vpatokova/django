@@ -13,5 +13,3 @@ class StaticURLTests(TestCase):
     def test_converter_endpoint(self):
         response = Client().get("/catalog/<yyyy:year>/<pn:number>")
         self.assertEqual(response.status_code, 200)
-
-

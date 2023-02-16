@@ -15,4 +15,4 @@ class PositiveNumberConverter:
         return int(value)
 
     def to_url(self, value):
-        return str(value) 
+        return str(value)
