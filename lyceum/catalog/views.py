@@ -13,5 +13,5 @@ def new_page(request):
     return HttpResponse("<body>Я родился!</body>")
 
 
-def try_converter(request, text: str, pk: int):
-    return HttpResponse("<body>I'm a converter!</body>")
+def converter(request, year, number):
+    return HttpResponse(f"<body>I'm a converter!. Year is {year}, number is {number}</body>")
