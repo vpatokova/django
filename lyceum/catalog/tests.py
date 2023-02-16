@@ -11,5 +11,5 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_converter_endpoint(self):
-        response = Client().get("/catalog/<yyyy:year>/<pn:number>")
+        response = Client().get("/catalog/<df:text>/<pn:number>")
         self.assertEqual(response.status_code, 200)

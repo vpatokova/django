@@ -1,8 +1,8 @@
-class YearConverter:
-    regex = "([12]\d{3})"
+class DogOrFogConverter:
+    regex = "([df]og)"
 
     def to_python(self, value):
-        return int(value)
+        return str(value)
 
     def to_url(self, value):
         return str(value)
