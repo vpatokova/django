@@ -7,6 +7,6 @@ register_converter(converters.PoopOrLoopConverter, "text")
 urlpatterns = [
     path("", views.item_list),
     path("<int:pk>", views.item_detail),
-    re_path(r"re/\d+", views.new_page),
+    re_path(r"re/[1-9]\d*", views.new_page),
     path("<str:text>/<int:pk>", views.try_converter),
 ]
