@@ -54,7 +54,12 @@ class StaticURLTests(django.test.TestCase):
             ),
         )
     )
-    def test_catalog_item_positive_integer_endpoint(self, prefix, url, expected_status):
+    def test_catalog_item_positive_integer_endpoint(
+        self,
+        prefix,
+        url,
+        expected_status
+    ):
         full_url = f"/catalog/{prefix}/{url}"
         response = django.test.Client().get(full_url)
         self.assertEqual(
