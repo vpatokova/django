@@ -1,3 +1,4 @@
+import core.models
 import django.core.exceptions
 import django.core.validators
 import django.db
@@ -11,40 +12,7 @@ def custom_validator(value):
         )
 
 
-class AbstractModel(django.db.models.Model):
-    id = django.db.models.PositiveIntegerField(primary_key=True)
-
-    name = django.db.models.CharField(
-        default="не указано",
-        max_length=150,
-        verbose_name="название",
-        help_text="max 150 символов",
-    )
-
-    is_published = django.db.models.BooleanField(
-        default=True,
-        verbose_name="опубликовано",
-    )
-
-    class Meta:
-        abstract = True
-
-
-class SlugModel(django.db.models.Model):
-    slug = django.db.models.SlugField(
-        default="",
-        validators=[
-            django.core.validators.MaxLengthValidator(200),
-        ],
-        help_text="max 200 символов",
-        verbose_name="слаг",
-    )
-
-    class Meta:
-        abstract = True
-
-
-class Tag(AbstractModel, SlugModel):
+class Tag(core.models.AbstractModel, core.models.SlugModel):
     class Meta:
         verbose_name = "Тег"
         verbose_name_plural = "Теги"
@@ -53,7 +21,7 @@ class Tag(AbstractModel, SlugModel):
         return self.name[:15]
 
 
-class Category(AbstractModel, SlugModel):
+class Category(core.models.AbstractModel, core.models.SlugModel):
     weight = django.db.models.PositiveSmallIntegerField(
         default=100,
         verbose_name="вес",
@@ -68,7 +36,7 @@ class Category(AbstractModel, SlugModel):
         return self.name
 
 
-class Item(AbstractModel):
+class Item(core.models.AbstractModel):
     text = django.db.models.TextField(
         default="Описание товара",
         verbose_name="Описание",
@@ -87,7 +55,12 @@ class Item(AbstractModel):
         verbose_name="Категория",
     )
 
-    tags = django.db.models.ManyToManyField(Tag, verbose_name="Тэги")
+    tags = django.db.models.ManyToManyField(
+        Tag,
+        verbose_name="Тэги",
+        default=None,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Товар"

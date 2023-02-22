@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+import catalog.forms
 import catalog.models
 
 
@@ -48,3 +48,8 @@ class CategoryAdmin(admin.ModelAdmin):
         "id",
         "name",
     )
+
+
+class SystemAdmin(admin.ModelAdmin):
+    form = catalog.forms.ItemModelForm
+    filter_horizontal = ("tags",)
