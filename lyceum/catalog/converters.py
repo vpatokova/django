@@ -2,7 +2,7 @@ class DogOrFogConverter:
     regex = "([df]og)"
 
     def to_python(self, value):
-        return str(value)
+        return value
 
     def to_url(self, value):
         return str(value)
