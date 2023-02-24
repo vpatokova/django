@@ -94,7 +94,9 @@ class ModelsTests(django.test.TestCase):
 
         cls.tag = catalog.models.Tag.objects.create(
             id=1,
-            is_published=True, name="Тестовый тэг", slug="test-tag-slug",
+            is_published=True,
+            name="Тестовый тэг",
+            slug="test-tag-slug",
         )
 
     def test_create(self):
