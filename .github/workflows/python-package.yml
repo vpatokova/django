@@ -37,6 +37,6 @@ jobs:
         plugins: "flake8-import-order pep8-naming flake8-quotes"
     - name: Run Tests
       run: |
-        python manage.py test homepage
-        python manage.py test catalog
-        python manage.py test about
+        python lyceum/manage.py test homepage
+        python lyceum/manage.py test catalog
+        python lyceum/manage.py test about
