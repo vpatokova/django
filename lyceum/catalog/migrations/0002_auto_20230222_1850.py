@@ -26,7 +26,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "is_published",
-                    models.BooleanField(default=True, verbose_name="опубликовано"),
+                    models.BooleanField(
+                        default=True, verbose_name="опубликовано"
+                    ),
                 ),
                 (
                     "name",
@@ -42,7 +44,9 @@ class Migration(migrations.Migration):
                     models.SlugField(
                         default="",
                         help_text="max 200 символов",
-                        validators=[django.core.validators.MaxLengthValidator(200)],
+                        validators=[
+                            django.core.validators.MaxLengthValidator(200)
+                        ],
                     ),
                 ),
                 (
@@ -62,7 +66,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Tag",
             fields=[
-                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                (
+                    "id",
+                    models.PositiveIntegerField(
+                        primary_key=True, serialize=False
+                    ),
+                ),
                 (
                     "name",
                     models.CharField(
@@ -73,14 +82,18 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "is_published",
-                    models.BooleanField(default=True, verbose_name="опубликовано"),
+                    models.BooleanField(
+                        default=True, verbose_name="опубликовано"
+                    ),
                 ),
                 (
                     "slug",
                     models.SlugField(
                         default="",
                         help_text="max 200 символов",
-                        validators=[django.core.validators.MaxLengthValidator(200)],
+                        validators=[
+                            django.core.validators.MaxLengthValidator(200)
+                        ],
                     ),
                 ),
             ],
@@ -96,7 +109,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="item",
             name="is_published",
-            field=models.BooleanField(default=True, verbose_name="опубликовано"),
+            field=models.BooleanField(
+                default=True, verbose_name="опубликовано"
+            ),
         ),
         migrations.AddField(
             model_name="item",
@@ -112,7 +127,9 @@ class Migration(migrations.Migration):
             model_name="item",
             name="name",
             field=models.CharField(
-                help_text="max 150 символов", max_length=150, verbose_name="название"
+                help_text="max 150 символов",
+                max_length=150,
+                verbose_name="название",
             ),
         ),
         migrations.AddField(

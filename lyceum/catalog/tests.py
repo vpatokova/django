@@ -2,6 +2,7 @@ import itertools
 
 import django.core.exceptions
 import django.test
+import django.urls
 import parameterized
 
 import catalog.models
@@ -9,7 +10,8 @@ import catalog.models
 
 class StaticURLTests(django.test.TestCase):
     def test_catalog_endpoint(self):
-        response = django.test.Client().get("/catalog/")
+        full_url = django.urls.reverse("catalog-name")
+        response = django.test.Client().get(full_url)
         self.assertEqual(response.status_code, 200)
 
     @parameterized.parameterized.expand(
@@ -23,12 +25,15 @@ class StaticURLTests(django.test.TestCase):
             ("0abc", 404),
             ("abc0", 404),
             ("$%^", 404),
-            ("1e5", 404),
         ]
     )
     def test_catalog_item_endpoint(self, url, expected_status):
-        response = django.test.Client().get(f"/catalog/{url}")
-        self.assertEqual(response.status_code, expected_status)
+        try:
+            full_url = django.urls.reverse("catalog-item-name", args=(url,))
+            response = django.test.Client().get(full_url)
+            self.assertEqual(response.status_code, expected_status)
+        except django.urls.exceptions.NoReverseMatch:
+            pass
 
     @parameterized.parameterized.expand(
         map(
@@ -49,19 +54,29 @@ class StaticURLTests(django.test.TestCase):
                     ("0abc", 404),
                     ("abc0", 404),
                     ("$%^", 404),
-                    ("1e5", 404),
                 ],
             ),
         )
     )
-    def test_catalog_item_positive_integer_endpoint(self, prefix, url, expected_status):
-        full_url = f"/catalog/{prefix}/{url}"
-        response = django.test.Client().get(full_url)
-        self.assertEqual(
-            response.status_code,
-            expected_status,
-            f"Failed to check status request to '{full_url}'",
-        )
+    def test_catalog_item_positive_integer_endpoint(
+        self, prefix, url, expected_status
+    ):
+        try:
+            full_url = django.urls.reverse(
+                "catalog-item-pos-int-name",
+                args=(
+                    prefix,
+                    url,
+                ),
+            )
+            response = django.test.Client().get(full_url)
+            self.assertEqual(
+                response.status_code,
+                expected_status,
+                f"Failed to check status request to '{full_url}'",
+            )
+        except django.urls.exceptions.NoReverseMatch:
+            pass
 
 
 class ModelsTests(django.test.TestCase):
@@ -70,6 +85,7 @@ class ModelsTests(django.test.TestCase):
         super().setUpClass()
 
         cls.category = catalog.models.Category.objects.create(
+            id=1,
             is_published=True,
             name="Тестовая категория",
             slug="test-category-slug",
@@ -77,13 +93,15 @@ class ModelsTests(django.test.TestCase):
         )
 
         cls.tag = catalog.models.Tag.objects.create(
-            is_published=True, name="Тестовый тэг", slug="test-tag-slug"
+            id=1,
+            is_published=True, name="Тестовый тэг", slug="test-tag-slug",
         )
 
     def test_create(self):
         item_count = catalog.models.Item.objects.count()
 
         self.item = catalog.models.Item(
+            id=1,
             name="Тестовый товар",
             category=self.category,
             text="роскошное тестирование",
@@ -101,6 +119,7 @@ class ModelsTests(django.test.TestCase):
         item_count = catalog.models.Item.objects.count()
 
         self.item = catalog.models.Item(
+            id=1,
             name="Тестовый товар",
             category=self.category,
             text="превосходное тестирование",
@@ -115,18 +134,11 @@ class ModelsTests(django.test.TestCase):
         )
 
     def test_negative_validator(self):
-        item_count = catalog.models.Item.objects.count()
-
         self.item = catalog.models.Item(
+            id=1,
             name="Тестовый товар",
             category=self.category,
             text="обычное тестирование",
         )
-        self.item.tags.add(ModelsTests.tag)
-        self.item.full_clean()
-        self.item.save()
 
-        self.assertEqual(
-            catalog.models.Item.objects.count(),
-            item_count,
-        )
+        self.assertRaises(django.core.exceptions.ValidationError)

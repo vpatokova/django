@@ -35,6 +35,8 @@ jobs:
       uses: py-actions/flake8@v2
       with:
         plugins: "flake8-import-order pep8-naming flake8-quotes"
-    #- name: Run Tests
-      #run: |
-        #python manage.py test
+    - name: Run Tests
+      run: |
+        python manage.py test homepage
+        python manage.py test catalog
+        python manage.py test about

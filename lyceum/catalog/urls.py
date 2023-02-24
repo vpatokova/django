@@ -6,8 +6,12 @@ register_converter(converters.DogOrFogConverter, "df")
 register_converter(converters.PositiveNumberConverter, "pn")
 
 urlpatterns = [
-    path("", views.item_list),
-    path("<int:pk>", views.item_detail),
+    path("", views.item_list, name="catalog-name"),
+    path("<int:pk>", views.item_detail, name="catalog-item-name"),
     re_path(r"re/[1-9]\d*", views.new_page),
-    path("<df:text>/<pn:number>", views.converter),
+    path(
+        "<df:text>/<pn:number>",
+        views.converter,
+        name="catalog-item-pos-int-name",
+    ),
 ]
