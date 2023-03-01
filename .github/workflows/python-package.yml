@@ -31,6 +31,7 @@ jobs:
         python -m pip install flake8
         python -m pip install parameterized
         python -m pip install Pillow
+        python -m pip install sorl-thumbnail
         pip install -r requirements/prod.txt
         pip install -r requirements/test.txt
     - name: flake8 Lint
