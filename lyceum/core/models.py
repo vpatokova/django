@@ -53,17 +53,13 @@ class ImageModel(django.db.models.Model):
 
     def image_tmb(self):
         if self.image:
-            return mark_safe(
-                f"<img src='{self.image.url}' width='50'>"
-            )
+            return mark_safe(f"<img src='{self.image.url}' width='50'>")
         return "Нет изображения"
 
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
 
-    list_display = (
-        "image_tmb"
-    )
+    list_display = "image_tmb"
 
     class Meta:
         abstract = True

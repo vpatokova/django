@@ -5,7 +5,7 @@ import django.db
 import django.db.models
 from django.utils.html import mark_safe
 
-#from sorl.thumbnail import get_thumbnail
+# from sorl.thumbnail import get_thumbnail
 
 
 def custom_validator(value):
@@ -39,7 +39,7 @@ class Category(core.models.AbstractModel, core.models.SlugModel):
         return self.name
 
 
-'''
+"""
 class Image(core.models.ImageModel):
     image = django.db.models.ImageField(
         verbose_name="Будет приведено к ширине 1280px",
@@ -68,7 +68,7 @@ class Image(core.models.ImageModel):
     class Meta:
         verbose_name = "Изображение"
         verbose_name_plural = "Изображения"
-'''
+"""
 
 
 class Item(core.models.AbstractModel):
@@ -82,10 +82,9 @@ class Item(core.models.AbstractModel):
 
     def image_tmb(self):
         if self.main_image:
-            return mark_safe(
-                f"<img src='{self.main_image.url}' width='50'>"
-            )
+            return mark_safe(f"<img src='{self.main_image.url}' width='50'>")
         return "Нет изображения"
+
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
 
@@ -114,14 +113,15 @@ class Item(core.models.AbstractModel):
         default=None,
         blank=True,
     )
-    '''
+    """
     gallery = django.db.models.ForeignKey(
         Image,
         verbose_name="Галерея",
         default=None,
         blank=True,
     )
-    '''
+    """
+
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"

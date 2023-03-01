@@ -32,11 +32,11 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display_links = ("name",)
 
 
-'''
+"""
 @admin.register(catalog.models.Image)
 class ImageAdmin(admin.ModelAdmin):
     pass
-'''
+"""
 
 
 class SystemAdmin(admin.ModelAdmin):

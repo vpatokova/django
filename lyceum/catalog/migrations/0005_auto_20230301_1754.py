@@ -4,19 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0004_item_image'),
+        ("catalog", "0004_item_image"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='item',
-            name='image',
+            model_name="item",
+            name="image",
         ),
         migrations.AddField(
-            model_name='item',
-            name='main_image',
-            field=models.ImageField(blank=True, default=None, null=True, upload_to='uploads/% Y/% m/% d/', verbose_name='Главное изображение'),
+            model_name="item",
+            name="main_image",
+            field=models.ImageField(
+                blank=True,
+                default=None,
+                null=True,
+                upload_to="uploads/% Y/% m/% d/",
+                verbose_name="Главное изображение",
+            ),
         ),
     ]
