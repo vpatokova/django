@@ -10,7 +10,7 @@ import catalog.models
 
 class StaticURLTests(django.test.TestCase):
     def test_catalog_endpoint(self):
-        full_url = django.urls.reverse("catalog-name")
+        full_url = django.urls.reverse("item_list")
         response = django.test.Client().get(full_url)
         self.assertEqual(response.status_code, 200)
 
@@ -29,7 +29,7 @@ class StaticURLTests(django.test.TestCase):
     )
     def test_catalog_item_endpoint(self, url, expected_status):
         try:
-            full_url = django.urls.reverse("catalog-item-name", args=(url,))
+            full_url = django.urls.reverse("item_detail", args=(url,))
             response = django.test.Client().get(full_url)
             self.assertEqual(response.status_code, expected_status)
         except django.urls.exceptions.NoReverseMatch:

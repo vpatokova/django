@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
-def item_description(request):
-    return HttpResponse("<body>This is the description of the project</body>")
+def project_description(request):
+    template = "about/project_description.html"
+    context = {}
+    return render(request, template, context)

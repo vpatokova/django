@@ -60,6 +60,8 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+lyceum/static_dev
+lyceum/media
 
 # Flask stuff:
 instance/

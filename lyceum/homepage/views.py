@@ -1,8 +1,11 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def home(request):
-    return HttpResponse("<body>This is a homepage</body>")
+    template = "homepage/home.html"
+    context = {}
+    return render(request, template, context)
 
 
 def coffee(request):

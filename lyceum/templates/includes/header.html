@@ -1,0 +1,35 @@
+<header>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col">
+        {% with request.resolver_match.view_name as view_name %}
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'homepage:home' %}active{% endif %}" href="{% url 'homepage:home' %}">
+              На главную
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'about:about' %}active{% endif %}" href="{% url 'about:about' %}">
+              О проекте
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'catalog:item_list' %}active{% endif %}" href="{% url 'catalog:item_list' %}">
+              Список товаров
+            </a>
+          </li>
+        </ul>
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+</header>
