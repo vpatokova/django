@@ -1,17 +1,5 @@
 from django.contrib import admin
-import catalog.forms
 import catalog.models
-
-
-@admin.register(catalog.models.Item)
-class ItemAdmin(admin.ModelAdmin):
-    list_display = (
-        catalog.models.Item.is_published.field.name,
-        catalog.models.Item.name.field.name,
-        catalog.models.Item.image_tmb,
-    )
-    list_editable = ("is_published",)
-    list_display_links = ("name",)
 
 
 @admin.register(catalog.models.Tag)
@@ -32,14 +20,20 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display_links = ("name",)
 
 
-@admin.register(catalog.models.Image)
-class ImageAdmin(admin.ModelAdmin):
+class ImageInline(admin.TabularInline):
+    model = catalog.models.Image
+    extra = 0
+
+
+@admin.register(catalog.models.Item)
+class ItemAdmin(admin.ModelAdmin):
     list_display = (
-        catalog.models.Image.image.field.name,
-        catalog.models.Image.image_tmb,
+        catalog.models.Item.is_published.field.name,
+        catalog.models.Item.name.field.name,
+        catalog.models.Item.image_tmb,
     )
-
-
-class SystemAdmin(admin.ModelAdmin):
-    form = catalog.forms.ItemModelForm
-    filter_horizontal = ("tags",)
+    list_editable = ("is_published",)
+    list_display_links = ("name",)
+    inlines = [
+        ImageInline,
+    ]

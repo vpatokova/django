@@ -40,9 +40,12 @@ class SlugModel(django.db.models.Model):
 
 class ImageModel(django.db.models.Model):
     image = django.db.models.ImageField(
-        "Будет приведено к ширине 1280px",
+        verbose_name="Изображение",
+        help_text="Будет приведено к ширине 1280px",
         default=None,
-        upload_to="uploads/% Y/% m/% d/",
+        blank=True,
+        null=True,
+        upload_to="uploads",
     )
 
     def get_image_x1280(self):
@@ -58,8 +61,6 @@ class ImageModel(django.db.models.Model):
 
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
-
-    list_display = "image_tmb"
 
     class Meta:
         abstract = True
