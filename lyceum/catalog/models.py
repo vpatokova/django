@@ -4,6 +4,8 @@ import django.core.validators
 import django.db
 import django.db.models
 
+from tinymce.models import HTMLField
+
 # from django.utils.html import mark_safe
 
 # from sorl.thumbnail import get_thumbnail
@@ -41,7 +43,7 @@ class Category(core.models.AbstractModel, core.models.SlugModel):
 
 
 class Item(core.models.AbstractModel, core.models.ImageModel):
-    text = django.db.models.TextField(
+    text = HTMLField(
         default="Описание товара",
         verbose_name="Описание",
         help_text="Описание должно содержать слова 'превосходно, роскошно'",
