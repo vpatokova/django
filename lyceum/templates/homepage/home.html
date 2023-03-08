@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
 {% block content %}
   {% load static %}
-
   <img src="{% static 'img/cat_logo.jpg' %}">
+  <h2>Мы рекомендуем:</h2>
+  {% include "catalog/includes/card.html" %}
 
 {% endblock %}
     

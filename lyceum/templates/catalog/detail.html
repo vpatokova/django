@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Описание товара{% endblock %}
+
+{% block content %}
+  <div>
+    <h5>{{ item.name }}</h5>
+    {% if item.image %}
+      <img src="{{ item.image.url }}">
+    {% endif %}
+    <p>{{ item.category.name }}</p>
+    <p>{{ item.text }}</p>
+    {% for tag in item.tags.all %}
+      {{ tag.name }}
+    {% endfor %}
+    {% for image in images %}
+      <img src="{{ image.image.url }}">
+    {% endfor %}
+
+  </div>
+{% endblock %}
+    

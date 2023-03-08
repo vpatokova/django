@@ -20,8 +20,10 @@ def custom_validator(value):
 
 class Tag(core.models.AbstractModel, core.models.SlugModel):
     class Meta:
+        ordering = ("slug",)
         verbose_name = "Тег"
         verbose_name_plural = "Теги"
+        default_related_name = "tags"
 
     def __str__(self):
         return self.name[:15]
@@ -35,6 +37,7 @@ class Category(core.models.AbstractModel, core.models.SlugModel):
     )
 
     class Meta:
+        ordering = ("weight", "id")
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
 
@@ -43,6 +46,7 @@ class Category(core.models.AbstractModel, core.models.SlugModel):
 
 
 class Item(core.models.AbstractModel, core.models.ImageModel):
+    is_on_main = django.db.models.BooleanField(default=True)
     text = HTMLField(
         default="Описание товара",
         verbose_name="Описание",
@@ -69,8 +73,10 @@ class Item(core.models.AbstractModel, core.models.ImageModel):
     )
 
     class Meta:
+        ordering = ("name",)
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+        default_related_name = "items"
 
     def __str__(self):
         return self.name[:15]
@@ -99,3 +105,4 @@ class Image(core.models.ImageModel):
     class Meta:
         verbose_name = "Изображение"
         verbose_name_plural = "Изображения"
+        default_related_name = "images"
