@@ -103,6 +103,7 @@ class Image(core.models.ImageModel):
     )
 
     class Meta:
+        ordering = ("id",)
         verbose_name = "Изображение"
         verbose_name_plural = "Изображения"
         default_related_name = "images"

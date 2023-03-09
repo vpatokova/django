@@ -38,18 +38,17 @@ def item_detail(request, pk):
                 queryset=catalog.models.Tag.objects.filter(
                     is_published=True
                 ).only("name"),
-            )
+            ),
+            django.db.models.Prefetch(
+                "images",
+                queryset=catalog.models.Image.objects.only("image"),
+            ),
         ),
         pk=pk,
     )
-    images = (
-        catalog.models.Image.objects.filter(item_id=pk)
-        .order_by("id")
-        .only("image")
-    )
+
     context = {
         "item": item,
-        "images": images,
     }
     return django.shortcuts.render(request, template, context)
 

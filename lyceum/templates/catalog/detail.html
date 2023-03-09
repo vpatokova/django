@@ -6,13 +6,17 @@
     <h5>{{ item.name }}</h5>
     {% if item.image %}
       <img src="{{ item.image.url }}">
+    {% else %}
+      {% load static %}
+      <img src="{% static 'img/plug.png' %}">
+
     {% endif %}
     <p>{{ item.category.name }}</p>
     <p>{{ item.text }}</p>
     {% for tag in item.tags.all %}
       {{ tag.name }}
     {% endfor %}
-    {% for image in images %}
+    {% for image in item.images.all %}
       <img src="{{ image.image.url }}">
     {% endfor %}
 
