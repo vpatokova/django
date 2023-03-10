@@ -1,12 +1,15 @@
-{% for item in items %}
-<div>
-  <h5>{{ item.name }}</h5>
-  <p>{{ item.category.name }}</p>
-  <p>{{ item.text|truncatewords:10 }}</p>
-  {% for tag in item.tags.all %}
-    {{ tag.name }}
+{% regroup items by category as newlist %}
+{% for x in newlist %}
+  <h3>{{ x.grouper }}</h3>
+  {% for item in x.list %}
+  <div>
+    <h5>{{ item.name }}</h5>
+    <p>{{ item.text|truncatewords:10 }}</p>
+    {% for tag in item.tags.all %}
+      {{ tag.name }}
+    {% endfor %}
+  </div>
   {% endfor %}
-</div>
 {% empty %}
   <p>Список пуст</p>
 {% endfor %}
