@@ -6,8 +6,11 @@ from feedback.models import Feedback
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
-        fields = (Feedback.text.field.name,)
+        fields = (
+            "text",
+            "mail",
+        )
 
         labels = {
-            Feedback.text.field.name: "Имя поля",
+            "text": "Имя поля",
         }

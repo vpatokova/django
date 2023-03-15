@@ -14,9 +14,7 @@ def home(request):
         .prefetch_related(
             Prefetch(
                 "tags",
-                queryset=Tag.objects.filter(
-                    is_published=True
-                ).only("name"),
+                queryset=Tag.objects.filter(is_published=True).only("name"),
             )
         )
         .order_by("name")

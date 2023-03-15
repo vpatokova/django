@@ -14,25 +14,19 @@ class FormTests(django.test.TestCase):
         cls.form = feedback.forms.FeedbackForm()
 
     def test_name_label(self):
-        name_label = FormTests.form.fields["name"].label
-        self.assertEquals(name_label, "Имя")
-
-    def test_name_help_text(self):
-        name_help_text = FormTests.form.fields["name"].help_text
-        self.assertEquals(name_help_text, "Подсказка")
+        name_label = FormTests.form.fields["text"].label
+        self.assertEquals(name_label, "Имя поля")
 
     def test_create_task(self):
-        items_count = catalog.models.Item.objects.count()
         form_data = {
-            "name": "Тест",
+            "text": "Тест",
+            "mail": "test@mail.com",
         }
 
         response = django.test.Client().post(
-            django.urls.reverse("feedback:thanks"),
+            django.urls.reverse("feedback:feedback"),
             data=form_data,
             follow=True,
         )
 
         self.assertRedirects(response, django.urls.reverse("feedback:thanks"))
-
-        self.assertEqual(catalog.models.Item.objects.count(), items_count + 1)

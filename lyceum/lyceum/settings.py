@@ -14,6 +14,8 @@ DEBUG = DEBUG_ENV in ("true", "yes", "1", "y", "t")
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
+EMAIL_HOST = os.getenv("DJANGO_EMAIL_HOST", "best@email.com")
+
 
 # Application definition
 
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ru-ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 

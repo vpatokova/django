@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 
 from feedback.forms import FeedbackForm
 
+from lyceum.settings import EMAIL_HOST
+
 
 def feedback(request):
     template = "feedback/feedback.html"
@@ -10,16 +12,16 @@ def feedback(request):
 
     if form.is_valid():
         text = form.cleaned_data.get("text")
+        mail = form.cleaned_data.get("mail")
         send_mail(
-            "Subject here",
-            text,
-            "from@example.com",
-            ["to@example.com"],
+            subject="Thank you for your feedback!",
+            message=f"We got your feedback '{text}'",
+            from_email=EMAIL_HOST,
+            recipient_list=[mail],
             fail_silently=False,
         )
 
         return redirect("feedback:thanks")
-
     context = {
         "form": form,
     }

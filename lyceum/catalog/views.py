@@ -48,7 +48,7 @@ def item_detail(request, pk):
     return render(request, template, context)
 
 
-'''
+"""
 def item_create(request):
     template = "create.html"
     form = ItemForm(request.POST or None)
@@ -129,4 +129,4 @@ def tag_update(request, pk):
         "form": form,
     }
     return render(request, template, context)
-'''
+"""

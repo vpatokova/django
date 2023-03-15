@@ -41,3 +41,4 @@ jobs:
         python lyceum/manage.py test homepage
         python lyceum/manage.py test catalog
         python lyceum/manage.py test about
+        python lyceum/manage.py test lyceum/feedback

@@ -38,14 +38,15 @@ class PersonForm(forms.Form):
         widget=forms.TextInput(attrs={"class": "form-control"})
     )
     surname = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={"class": "form-control"})
+        required=False, widget=forms.TextInput(attrs={"class": "form-control"})
     )
     birth_date = forms.DateField(
         required=False,
-        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"})
+        widget=forms.DateInput(
+            attrs={"type": "date", "class": "form-control"}
+        ),
     )
     lucky_number = forms.IntegerField(
         required=False,
-        widget=forms.NumberInput(attrs={"class": "form-control"})
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
     )
