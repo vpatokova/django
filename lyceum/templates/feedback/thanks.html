@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Обратная связь{% endblock %}
+{% block content %}
+<h5>{{ text }}</h5>
+{% load static %}
+<img src="{% static 'img/cat_logo.jpg' %}">
+
+{% endblock %}

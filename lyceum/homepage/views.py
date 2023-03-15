@@ -1,30 +1,20 @@
+from django.db.models import Prefetch
+from django.shortcuts import render
 import django.http
-import django.shortcuts
 
-import catalog.models
+from catalog.models import Item, Tag
 
 
 def home(request):
     template = "homepage/home.html"
-    """
-    my_ids = (
-        catalog.models.Item.objects.filter(is_on_main=True).
-        values_list("id", flat=True)
-    )
-    if my_ids:
-        items = catalog.models.Item.objects.filter(
-            id__in=[random.choice(my_ids), random.choice(my_ids)],
-        )
-    else:
-        items = None
-    """
+
     items = (
-        catalog.models.Item.objects.filter(is_on_main=True)
+        Item.objects.filter(is_on_main=True)
         .select_related("category")
         .prefetch_related(
-            django.db.models.Prefetch(
+            Prefetch(
                 "tags",
-                queryset=catalog.models.Tag.objects.filter(
+                queryset=Tag.objects.filter(
                     is_published=True
                 ).only("name"),
             )
@@ -36,11 +26,8 @@ def home(request):
         "items": items,
     }
 
-    context = {
-        "items": items,
-    }
-    return django.shortcuts.render(request, template, context)
+    return render(request, template, context)
 
 
 def coffee(request):
-    return django.http.HttpResponse("<body>I am a teapot</body>", status=418)
+    return django.http.HttpResponse("<body>I am a teapot</body>")
