@@ -4,7 +4,6 @@ import django.urls
 
 import feedback.models
 import feedback.forms
-import catalog.models
 
 
 class FormTests(django.test.TestCase):
