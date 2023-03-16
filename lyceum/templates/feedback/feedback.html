@@ -7,16 +7,10 @@
   {% csrf_token %}
   <ul>
     <li>
-      <label for="text">Текст</label>
-      <input type="text" id="text" name="text">
-    </li>
-    <li>
-      <label for="mail">Почта</label>
-      <input type="email" id="mail" name="mail">
+      {{ form }}
     </li>
     <li class="button">
       <button type="submit">Отправить</button>
     </li>
   </ul>
-
 {% endblock %}

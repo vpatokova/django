@@ -28,6 +28,15 @@
             </a>
           </li>
         </ul>
+      </div>
+      <div class="col">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'feedback:feedback' %}active{% endif %}" href="{% url 'feedback:feedback' %}">
+              Отзыв
+            </a>
+          </li>
+        </ul>
         {% endwith %}
       </div>
     </div>

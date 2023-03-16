@@ -12,5 +12,6 @@ class FeedbackForm(forms.ModelForm):
         )
 
         labels = {
-            "text": "Имя поля",
+            "text": "Отзыв",
+            "mail": "Электронная почта",
         }

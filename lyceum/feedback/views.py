@@ -5,6 +5,10 @@ from feedback.forms import FeedbackForm
 
 from lyceum.settings import EMAIL_HOST
 
+EMAIL_SUBJECT_TEXT: str = "Thanks"
+EMAIL_RESPONSE_TEXT: str = "Thank you for your feedback: \n\n{text}. \n\n"
+"Your opinion is very important to us"
+
 
 def feedback(request):
     template = "feedback/feedback.html"
@@ -14,8 +18,8 @@ def feedback(request):
         text = form.cleaned_data.get("text")
         mail = form.cleaned_data.get("mail")
         send_mail(
-            subject="Thank you for your feedback!",
-            message=f"We got your feedback '{text}'",
+            subject=EMAIL_SUBJECT_TEXT,
+            message=EMAIL_RESPONSE_TEXT.format(text=text),
             from_email=EMAIL_HOST,
             recipient_list=[mail],
             fail_silently=False,
