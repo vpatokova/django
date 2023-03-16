@@ -12,9 +12,13 @@ class FormTests(django.test.TestCase):
         super().setUpClass()
         cls.form = feedback.forms.FeedbackForm()
 
-    def test_name_label(self):
-        name_label = FormTests.form.fields["text"].label
-        self.assertEquals(name_label, "Имя поля")
+    def test_text_label(self):
+        text_label = FormTests.form.fields["text"].label
+        self.assertEquals(text_label, "Отзыв")
+
+    def test_mail_label(self):
+        mail_label = FormTests.form.fields["mail"].label
+        self.assertEquals(mail_label, "Электронная почта")
 
     def test_create_task(self):
         form_data = {
