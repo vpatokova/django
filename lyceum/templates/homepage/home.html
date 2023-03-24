@@ -4,6 +4,7 @@
 <h1>Главная страница</h1>
 
 <form method="post">
+  {% csrf_token %}
   <ul>
     <li>
       <label for="name">Имя</label>
