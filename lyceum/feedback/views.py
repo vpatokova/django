@@ -1,9 +1,9 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
+import django.conf
 
 from feedback.forms import FeedbackForm
 
-from lyceum.settings import EMAIL_HOST
 
 EMAIL_SUBJECT_TEXT: str = "Thanks"
 EMAIL_RESPONSE_TEXT: str = "Thank you for your feedback: \n\n{text}. \n\n"
@@ -20,7 +20,7 @@ def feedback(request):
         send_mail(
             subject=EMAIL_SUBJECT_TEXT,
             message=EMAIL_RESPONSE_TEXT.format(text=text),
-            from_email=EMAIL_HOST,
+            from_email=django.conf.settings.EMAIL_HOST,
             recipient_list=[mail],
             fail_silently=False,
         )
